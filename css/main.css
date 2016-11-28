@@ -1,0 +1,139 @@
+    html{
+        height: 100%;
+            margin: 0;
+        }
+    body {
+    	height: 100%;
+            margin: 0;
+        background-color: ivory;
+    }
+
+    #container{
+    	height: 100%;
+    	border:3px solid black;
+
+
+    }
+
+    .header{
+
+    border: 2px solid black;
+    font-family: "Courier New";
+    color: black;
+	padding: 2.875em 1.875em 1.875em;
+    position: absolute;
+    z-index: 1000;
+
+    width: 600px;
+    height: 200px;
+    left: 50%;
+    margin-top: -150px;
+    margin-left: -300px;
+    text-align: center;
+    }
+
+    #header{
+
+    top: 50%;
+
+    }
+
+    #footer{
+
+    top: 85%;
+
+    }
+
+    .header{
+    	font-family: monospace;
+    }
+
+    .NN {
+    	position:relative;
+    	left: 3%;
+    	height: 500px;
+    	width: auto;
+    }
+
+    canvas {
+    	position:absolute;
+    	left:0px;
+    	top:0px;
+    	/*width: 100%;
+        /*border:0px solid red;*/
+        /*background:rgba(255,0,0,0.3)*/
+    }
+
+    div.circle-avatar{
+
+   background-image: url(../img/EXIST_Lennart.jpg);
+/* make it responsive */
+z-index: 1001;
+position:relative;
+
+max-width: 100%;
+width:12%;
+height:auto;
+display:block;
+/* div height to be the same as width*/
+padding-top:12%;
+
+/* make it a circle */
+border-radius:50%;
+
+/* Centering on image`s center*/
+background-position-y: center;
+background-position-x: center;
+background-repeat: no-repeat;
+
+/* it makes the clue thing, takes smaller dimension to fill div */
+background-size: cover;
+
+/* it is optional, for making this div centered in parent*/
+margin: 0 auto;
+top: 10%;
+left: 0;
+
+border:2px solid black;
+}
+
+div.intro{
+
+	font-family: monospace;
+
+	position:relative;
+	top: 60%;
+	left: 1%;
+}
+
+.typed-cursor{
+    opacity: 1;
+    -webkit-animation: blink 0.9s infinite;
+    -moz-animation: blink 0.9s infinite;
+    animation: blink 0.9s infinite;
+}
+
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+
+
+
+
+
+
+
+
+
