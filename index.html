@@ -26,54 +26,55 @@
 </head>
 
 <body>
-	<div id="container">
-
-		<div id="header-container" class="shadow-5">
-			<header class="header text">
-				<p hidden>Hi, I'm Lennart Walger.</p>
-				<p class="text">$ Hi, I'm Lennart Walger.</p>
-				<p hidden>I'm an engineer.</p>
-				<span class="text">$ I'm a<element id="typed1"> </element><element id="typed2"> </element><element id="typed3"></element></span>
-			</header>
-		</div>
+	<div id="canvas-container">
 		<canvas id="canvas">
 			This text is displayed if your browser does not support HTML5 Canvas.
 		</canvas>
-	
-		<div class="row">
-			<div id="contact-container" class="footer-col col-md-4 col-md-push-4">
-				<ul class="list-inline">
-					<li>
-						<div id="aboutme" class="btn_social btn_outline shadow-3"><i class="fa fa-fw fa-bars"></i></div>
-					</li>	
-					<!--li>
-						<a href="#" class="btn_social btn_outline shadow-3"><i class="fa fa-fw fa-google-plus"></i></a>
-					</li>
-					<li>
-						<a href="#" class="btn_social btn_outline shadow-3"><i class="fa fa-fw fa-twitter"></i></a>
-					</li-->
-					<li>
-						<a href="https://de.linkedin.com/in/lennart-walger-119463115" class="nam btn_social btn_outline shadow-3"><i class="fa fa-fw fa-linkedin"></i></a>
-					</li>
-					<li>
-						<a href="mailto:lennart.walger@tum.de?subject=Hey Lennart, I like your website!" class="nam btn_social btn_outline shadow-3"><i class="fa fa-fw fa-envelope-o"></i></a>
-					</li>
-				</ul>
-			</div>
-		</div>
 		<div id="button-container">
 			<div class="play_button">
-			<div class="btn_play btn_outline_play shadow-1"><i id="playpause" class="fa fa-fw fa-pause"></i></div>
+				<div class="btn_play btn_outline_play shadow-1"><i id="playpause" class="fa fa-fw fa-pause"></i></div>
 			</div>
 		</div>
+
 	</div>
+</div>
+
+<div id="main-container" class="ease-in">
+	<div id="header-container" class="shadow-5 ease-out">
+		<header class="header text">
+			<p hidden>Hi, I'm Lennart Walger.</p>
+			<p class="text">$ Hi, I'm Lennart Walger.</p>
+			<p hidden>I'm an engineer.</p>
+			<span class="text">$ I'm a<element id="typed1"> </element><element id="typed2"> </element><element id="typed3"></element></span>
+		</header>
+	</div>
+	<div class="row ease-out">
+		<div id="contact-container" class="footer-col">
+			<ul class="list-inline">
+				<li>
+					<div id="about-me" class="nam btn_social btn_outline shadow-3"><i class="fa fa-fw fa-bars"></i></div>
+				</li>
+				<li>
+					<a href="https://de.linkedin.com/in/lennart-walger-119463115" class="nam btn_social btn_outline shadow-3"><i class="fa fa-fw fa-linkedin"></i></a>
+				</li>
+				<li>
+					<a href="mailto:lennart.walger@tum.de?subject=Hey Lennart, I like your website!" class="nam btn_social btn_outline shadow-3"><i class="fa fa-fw fa-envelope-o"></i></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div id="about-me-div" class="ease-in-out shadow-5">
+		<p>Currently, I'm a researcher at the Singapore Institute for Neurotechnology (SINAPSE) at the National University of Singapore. I have finished my B.Sc. in Engineering Science at the Technical University Munich with a focus on Artificial Intelligence and Robotics. I have worked intensively with event based vision sensors but aim to deepen my knowledge not only in event based information processing but machine learning in general. I am highly interested in novel solutions and applications using intelligent algorithms. </p>
+		<p>In my spare time I like to go surfing. </p>
+	</div>
+</div>
+
 </body>
 
 
 
 
 <p hidden> Nicht so neugierig, du Schlawiner!</p>
-
 
 
 
