@@ -773,11 +773,11 @@ $(function () {
     callback: function () {
       document.getElementsByClassName("typed-cursor")[0].remove();
       $("#typed2").typed({
-        strings: ["n "],
+        strings: [" "],
         callback: function () {
           document.getElementsByClassName("typed-cursor")[0].remove();
           $("#typed3").typed({
-            strings: ["engineer^500."],
+            strings: ["researcher^500.^300.^100.^200"],
             typeSpeed: 30,
             startDelay: 10,
             shuffle: !1,
