@@ -1,6 +1,10 @@
 #!/bin/bash
 
-cp ../website-dev/index.html ../1-w.github.io/
+
+
+cp -R ../website-dev/index.min.html index.html
+cp -rR ../website-dev/img .
+cp -rR ../website-dev/js .
 
 git add .
 git commit -m "_"
