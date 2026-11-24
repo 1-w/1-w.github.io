@@ -1,0 +1,58 @@
+{
+  "name": "1-w.github.io",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    // uvx: container-bootstrap.sh warns without it, some hooks call it
+    "ghcr.io/va-h/devcontainers-features/uv:1": {}
+  },
+  // Vite dev server
+  "forwardPorts": [5173],
+  "mounts": [
+    // Container-local ~/.claude on a NAMED volume. The host ~/.claude is
+    // deliberately NOT mounted whole, so host .credentials.json never crosses
+    // the container boundary. Log in once inside the container; the volume
+    // keeps the login (and installed plugins) across rebuilds.
+    // Everything from the host below is a BIND, never a volume:
+    // `docker volume rm` / `docker volume prune` can only discard the
+    // container-local copy, never host files.
+    "source=1-w-site-claude-config,target=/home/node/.claude,type=volume",
+    // transcripts stay shared with the host (conversation history, no secrets).
+    // Container cwd is /workspaces/1-w.github.io, so sessions land under their
+    // own slug, distinct from host-run sessions.
+    "source=${localEnv:HOME}/.claude/projects,target=/home/node/.claude/projects,type=bind",
+    // User-level Claude stack at a neutral path, read-only. container-bootstrap.sh
+    // (postStartCommand) links CLAUDE.md and the dirs into ~/.claude, rebuilds
+    // settings.json from the host, registers the user-scope MCP servers and
+    // installs the enabled plugins.
+    "source=${localEnv:HOME}/.claude/CLAUDE.md,target=/opt/claude-host/CLAUDE.md,type=bind,readonly",
+    "source=${localEnv:HOME}/.claude/commands,target=/opt/claude-host/commands,type=bind,readonly",
+    "source=${localEnv:HOME}/.claude/skills,target=/opt/claude-host/skills,type=bind,readonly",
+    "source=${localEnv:HOME}/.claude/hooks,target=/opt/claude-host/hooks,type=bind,readonly",
+    "source=${localEnv:HOME}/.claude/settings.json,target=/opt/claude-host/settings.json,type=bind,readonly",
+    "source=${localEnv:HOME}/.claude/container-bootstrap.sh,target=/opt/claude-host/container-bootstrap.sh,type=bind,readonly",
+    "source=${localEnv:HOME}/.claude/output-styles,target=/opt/claude-host/output-styles,type=bind,readonly",
+    "source=${localEnv:HOME}/.claude/agents,target=/opt/claude-host/agents,type=bind,readonly",
+    "source=${localEnv:HOME}/.claude/plugins/known_marketplaces.json,target=/opt/claude-host/known_marketplaces.json,type=bind,readonly"
+  ],
+  // Only for init-firewall.sh (iptables); the node user does not hold the capability.
+  "runArgs": ["--cap-add=NET_ADMIN"],
+  "postCreateCommand": "npm install -g @anthropic-ai/claude-code && bash .devcontainer/postCreate-browser.sh",
+  // Firewall FIRST and fail-loud: if it does not start, postStart aborts
+  // instead of continuing without the network block.
+  // chown: the named volume can arrive root-owned; /login then cannot write
+  // .credentials.json (fails silently).
+  // link-sessions.sh: host sessions (like the one that set this up) show up in
+  // the container's Claude Code.
+  "postStartCommand": "sudo chown node:node /home/node/.claude 2>/dev/null || true; bash .devcontainer/link-sessions.sh '${localWorkspaceFolder}'; sudo /usr/local/bin/init-firewall.sh && { [ -f /opt/claude-host/container-bootstrap.sh ] && bash /opt/claude-host/container-bootstrap.sh || true; }",
+  "customizations": {
+    "vscode": {
+      "extensions": ["anthropic.claude-code", "dbaeumer.vscode-eslint"],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  "remoteUser": "node"
+}

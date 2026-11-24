@@ -1,4 +1,7 @@
-.DS_STORE
+.DS_Store
 .npm
 node_modules
+dist/
+test-results/
+playwright-report/
 

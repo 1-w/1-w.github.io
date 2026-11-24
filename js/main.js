@@ -1,1 +1,0 @@
-$(function(){document.getElementById("playpause").addEventListener("click",function(){paused=!paused,paused?document.getElementById("playpause").className="fa fa-fw fa-play":document.getElementById("playpause").className="fa fa-fw fa-pause"}),paused=!1});
